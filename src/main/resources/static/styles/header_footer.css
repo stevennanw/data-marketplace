@@ -1,0 +1,23 @@
+header a {
+    text-decoration: none;
+    color: black;
+}
+
+footer {
+    background-color: #f7f9fc;
+}
+
+footer a {
+    text-decoration: none;
+    color: black;
+}
+
+footer h5 {
+    padding-bottom: 5px;
+}
+
+.fa {
+    font-size: 30px;
+    color: grey;
+    padding-right: 20px;
+}
