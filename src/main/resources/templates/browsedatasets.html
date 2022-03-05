@@ -10,7 +10,26 @@
 </head>
 <body>
 <div th:insert="header :: header"></div>
-<h1>211</h1>
+<h1>browsedatasets</h1>
+<table>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>price</th>
+        <th>description</th>
+    </tr>
+    <tr th:each="dataset : ${datasets}">
+        <td th:text="${dataset.id}"></td>
+        <td th:text="${dataset.name}"></td>
+        <td th:text="${dataset.price}"></td>
+        <td th:text="${dataset.description}"></td>
+<!--        <td>-->
+<!--            <form th:action="@{/view/} + ${dataset.id}">-->
+<!--                <button type="submit">View</button>-->
+<!--            </form>-->
+<!--        </td>-->
+    </tr>
+</table>
 <div th:insert="footer :: footer"></div>
 </body>
 </html>

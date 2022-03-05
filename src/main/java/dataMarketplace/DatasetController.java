@@ -9,16 +9,16 @@ import java.util.HashMap;
 
 @Controller
 public class DatasetController extends HttpServlet {
-    HashMap<Integer, Dataset> dataset = new HashMap<>();
+    HashMap<Integer, Dataset> datasets = new HashMap<>();
 
-//    public void setDataset(HashMap<Integer, Dataset> dataset) {
-//        this.dataset = dataset;
-//        dataset.put(0,new Dataset(0,"name1",0,"description0"));
-//        dataset.put(1,new Dataset(1,"name2",1,"description1"));
-//        dataset.put(2,new Dataset(2,"name3",2,"description2"));
-//        dataset.put(3,new Dataset(3,"name4",3,"description3"));
-//        dataset.put(4,new Dataset(4,"name5",4,"description4"));
-//    }
+    public void setDatasets(HashMap<Integer, Dataset> datasets) {
+        this.datasets = datasets;
+        datasets.put(0,new Dataset(0,"name1",0,"description0"));
+        datasets.put(1,new Dataset(1,"name2",1,"description1"));
+        datasets.put(2,new Dataset(2,"name3",2,"description2"));
+        datasets.put(3,new Dataset(3,"name4",3,"description3"));
+        datasets.put(4,new Dataset(4,"name5",4,"description4"));
+    }
 
     @GetMapping("/")
     public String index() {
@@ -27,7 +27,8 @@ public class DatasetController extends HttpServlet {
 
     @GetMapping("/browsedatasets")
     public String browseDataset(Model model) {
-        model.addAttribute("dataset", dataset.values());
+        setDatasets(datasets);
+        model.addAttribute("datasets", datasets.values());
         return "browsedatasets.html";
     }
 }
