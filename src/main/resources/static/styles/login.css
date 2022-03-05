@@ -5,7 +5,7 @@ html, body {
 body {
     display: flex;
     align-items: center;
-    background-color: whitesmoke;
+    background-color: #F5F5F5FF;
 }
 
 .login {
