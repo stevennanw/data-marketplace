@@ -23,11 +23,11 @@
         <td th:text="${dataset.name}"></td>
         <td th:text="${dataset.price}"></td>
         <td th:text="${dataset.description}"></td>
-<!--        <td>-->
-<!--            <form th:action="@{/view/} + ${dataset.id}">-->
-<!--                <button type="submit">View</button>-->
-<!--            </form>-->
-<!--        </td>-->
+        <td>
+            <form th:action="@{/view/} + ${dataset.id}">
+                <button type="submit">View</button>
+            </form>
+        </td>
     </tr>
 </table>
 <div th:insert="footer :: footer"></div>
