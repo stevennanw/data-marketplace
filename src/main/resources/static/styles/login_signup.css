@@ -8,13 +8,13 @@ body {
     background-color: #F5F5F5FF;
 }
 
-.login {
+.loginsignup {
     width: 100%;
     max-width: 400px;
     padding: 20px;
     margin: auto;
 }
 
-.login .form-floating:focus-within {
+.loginsignup .form-floating:focus-within {
     z-index: 3;
 }

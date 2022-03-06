@@ -43,14 +43,7 @@ public class DatasetController extends HttpServlet {
         model.addAttribute("dataset",datasets.get(id));
         return "view.html";
     }
-    @GetMapping("/owner_login")
-    public String ownerLogin() {
-        return "owner_login.html";
-    }
-    @GetMapping("/customer_login")
-    public String customerLogin() {
-        return "customer_login.html";
-    }
+
     @GetMapping("/owner_index")
     public String ownerDataset(Model model) {
         setDatasets(datasets);
