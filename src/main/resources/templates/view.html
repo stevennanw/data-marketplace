@@ -10,20 +10,65 @@
 </head>
 <body>
 <div th:insert="header :: header"></div>
-<table>
-  <tr>
-    <th>id</th>
-    <th>name</th>
-    <th>price</th>
-    <th>description</th>
-  </tr>
-  <tr>
-    <td th:text="${dataset.id}"></td>
-    <td th:text="${dataset.name}"></td>
-    <td th:text="${dataset.price}"></td>
-    <td th:text="${dataset.description}"></td>
-  </tr>
-</table>
+
+<main>
+  <div class="container">
+    <div class="row py-5">
+      <div class="col-3">
+        <div>&nbsp;</div>
+        <div class="mt-5 mb-3">
+          <h4 class="fw-bold">Feature</h4>
+          <p>This feature is super cool!</p>
+        </div>
+        <div>&nbsp;</div>
+        <div class="mt-5 mb-3">
+          <h4 class="fw-bold">Feature</h4>
+          <p>This feature is super cool!</p>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div>&nbsp;</div>
+        <div class="mt-5 mb-3">
+          <h4 class="fw-bold">Feature</h4>
+          <p>This feature is super cool!</p>
+        </div>
+        <div>&nbsp;</div>
+        <div class="mt-5 mb-3">
+          <h4 class="fw-bold">Feature</h4>
+          <p>This feature is super cool!</p>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div>&nbsp;</div>
+        <div class="mt-5 mb-3">
+          <h4 class="fw-bold">Feature</h4>
+          <p>This feature is super cool!</p>
+        </div>
+        <div>&nbsp;</div>
+        <div class="mt-5 mb-3">
+          <h4 class="fw-bold">Feature</h4>
+          <p>This feature is super cool!</p>
+        </div>
+      </div>
+
+
+      <div class="col-3 text-center">
+        <div class="card border-primary">
+          <img class="card-img-top" src="https://www.britive.com/wp-content/uploads/2021/08/iStock-1221293664-1.jpg" style="height: 200px">
+          <div class="card-body">
+            <h3 class="card-title my-0" th:text="${dataset.name}"></h3>
+            <h5 class="card-body text-muted my-0" th:text="${dataset.description}"></h5>
+            <h1 class="card-text" th:text="|&euro;${dataset.price}|"></h1>
+            <button type="button" class="btn btn-primary my-3">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
 <div th:insert="footer :: footer"></div>
 </body>
 </html>
