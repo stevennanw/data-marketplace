@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Objects;
 
 @Controller
 public class LoginSignupController extends HttpServlet {
@@ -18,7 +19,30 @@ public class LoginSignupController extends HttpServlet {
     public String loginOwner() {
         return "login-owner.html";
     }
+    @PostMapping("/login-owner")
+    public void loginOwner(Owner data, HttpServletResponse response) {
+        for (int i = 0; i < count; i++) {
+            String inEmail;
+            String inPassword;
+            inEmail = ownerList.get(i).getEmail();
+            inPassword = ownerList.get(i).getPassword();
+            if (Objects.equals(data.getEmail(), inEmail) && Objects.equals(data.getPassword(), inPassword)) {
+                try {
+                    response.sendRedirect("/owner-index");
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+            else{
+                try {
+                    response.sendRedirect("/login-error-page");
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }
 
+    }
     @GetMapping("/login-customer")
     public String loginCustomer() {
         return "login-customer.html";
