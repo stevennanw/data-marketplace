@@ -2,12 +2,10 @@ package dataMarketplace;
 
 import java.io.Serializable;
 
-public class Owner implements Serializable {
-
+public class Customer implements Serializable{
     private String password;
     private String email;
-    private int ownerId;
-
+    private int customerId;
 
     public String getPassword() {
         return password;
@@ -25,12 +23,11 @@ public class Owner implements Serializable {
         this.email = email;
     }
 
-    public int getOwnerId() {
-        return ownerId;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setOwnerId(int ownerId) {
-        this.ownerId = ownerId;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
-
 }
