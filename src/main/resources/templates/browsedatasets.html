@@ -10,7 +10,7 @@
     <link th:href="@{/styles/browsedatasets.css}" rel="stylesheet"/>
 </head>
 <body>
-<div th:insert="header :: header"></div>
+<div th:insert="header-customer :: header"></div>
 <main>
     <div class="container py-5 text-center">
         <h2 class="fw-light">Discover the Data that Drives Insight</h2>
@@ -28,7 +28,7 @@
                             <p class="card-text" th:text="${dataset.description}"></p>
                             <div class="d-flex">
                                 <p class="price" th:text="|&euro;${dataset.price}|"></p>
-                                <form th:action="@{/view/} + ${dataset.id}">
+                                <form th:action="@{/view/} + ${dataset.datasetid}">
                                     <button type="submit">View</button>
                                 </form>
                             </div>
