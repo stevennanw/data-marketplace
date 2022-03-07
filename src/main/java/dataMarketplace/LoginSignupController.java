@@ -47,7 +47,10 @@ public class LoginSignupController extends HttpServlet {
     public String loginCustomer() {
         return "login-customer.html";
     }
-
+    @GetMapping("/login-error-page")
+    public String loginError() {
+        return "login-error-page.html";
+    }
     @GetMapping("/signup-owner")
     public String signupOwner() {
         return "signup-owner.html";
