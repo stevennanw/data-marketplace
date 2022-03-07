@@ -14,16 +14,16 @@ public class DatasetController extends HttpServlet {
 
     public void setDatasets(HashMap<Integer, Dataset> datasets) {
         this.datasets = datasets;
-        datasets.put(0,new Dataset(0,"name0",0,"description0"));
-        datasets.put(1,new Dataset(1,"name1",1,"description1"));
-        datasets.put(2,new Dataset(2,"name2",2,"description2"));
-        datasets.put(3,new Dataset(3,"name3",3,"description3"));
-        datasets.put(4,new Dataset(4,"name4",4,"description4"));
-        datasets.put(5,new Dataset(5,"name5",0,"description5"));
-        datasets.put(6,new Dataset(6,"name6",1,"description6"));
-        datasets.put(7,new Dataset(7,"name7",2,"description7"));
-        datasets.put(8,new Dataset(8,"name8",3,"description8"));
-        datasets.put(9,new Dataset(9,"name9",4,"description9"));
+        datasets.put(0,new Dataset(0,"name0",0,"description0",0));
+        datasets.put(1,new Dataset(1,"name1",1,"description1",0));
+        datasets.put(2,new Dataset(2,"name2",2,"description2",0));
+        datasets.put(3,new Dataset(3,"name3",3,"description3",0));
+        datasets.put(4,new Dataset(4,"name4",4,"description4",0));
+        datasets.put(5,new Dataset(5,"name5",0,"description5",0));
+        datasets.put(6,new Dataset(6,"name6",1,"description6",0));
+        datasets.put(7,new Dataset(7,"name7",2,"description7",0));
+        datasets.put(8,new Dataset(8,"name8",3,"description8",0));
+        datasets.put(9,new Dataset(9,"name9",4,"description9",0));
     }
 
     @GetMapping("/")

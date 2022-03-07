@@ -3,24 +3,18 @@ package dataMarketplace;
 import java.io.Serializable;
 
 public class Dataset implements Serializable {
-    private int id;
+    private int datasetid;
     private String name;
     private int price;
     private String description;
+    private int ownerid;
 
-    public Dataset(int id, String name, int price, String description) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.description = description;
+    public int getDatasetid() {
+        return datasetid;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setDatasetid(int datasetid) {
+        this.datasetid = datasetid;
     }
 
     public String getName() {
@@ -46,4 +40,22 @@ public class Dataset implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public int getOwnerid() {
+        return ownerid;
+    }
+
+    public void setOwnerid(int ownerid) {
+        this.ownerid = ownerid;
+    }
+
+    public Dataset(int datasetid, String name, int price, String description, int ownerid) {
+        this.datasetid = datasetid;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.ownerid = ownerid;
+    }
+
+
 }
