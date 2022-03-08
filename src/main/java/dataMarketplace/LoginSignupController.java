@@ -14,13 +14,29 @@ import java.util.Objects;
 public class LoginSignupController extends HttpServlet {
     HashMap<Integer, Owner> ownerList = new HashMap<>();
     HashMap<Integer, Customer> customerList = new HashMap<>();
-    int count = 0;
+
+    public void setAdminOwner(HashMap<Integer, Owner> ownerList) {
+        this.ownerList = ownerList;
+        Owner admin = new Owner();
+        admin.setEmail("admin@goosecity.com");
+        admin.setPassword("goosecity");
+        ownerList.put(0,admin);
+    }
+    public void setAdminCustomer(HashMap<Integer, Customer> customerList) {
+        this.customerList = customerList;
+        Customer admin = new Customer();
+        admin.setEmail("admin@goosecity.com");
+        admin.setPassword("goosecity");
+        customerList.put(0,admin);
+    }
+    int count = 1;
     @GetMapping("/login-owner")
     public String loginOwner() {
         return "login-owner.html";
     }
     @PostMapping("/login-owner")
     public void loginOwner(Owner data, HttpServletResponse response) {
+        setAdminOwner(ownerList);
         for (int i = 0; i < count; i++) {
             String inEmail;
             String inPassword;
@@ -47,13 +63,22 @@ public class LoginSignupController extends HttpServlet {
     public String loginCustomer() {
         return "login-customer.html";
     }
+
     @PostMapping("/login-customer")
     public void loginCustomer(Customer data, HttpServletResponse response) {
+        setAdminCustomer(customerList);
         for (int i = 0; i < count; i++) {
             String inEmail;
             String inPassword;
-            inEmail = ownerList.get(i).getEmail();
-            inPassword = ownerList.get(i).getPassword();
+            inEmail = customerList.get(i).getEmail();
+            inPassword = customerList.get(i).getPassword();
+            if(customerList.isEmpty()){
+                try {
+                    response.sendRedirect("/login-error-page");
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
             if (Objects.equals(data.getEmail(), inEmail) && Objects.equals(data.getPassword(), inPassword)) {
                 try {
                     response.sendRedirect("/owner-index");
