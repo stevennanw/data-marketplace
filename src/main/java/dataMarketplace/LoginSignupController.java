@@ -47,6 +47,30 @@ public class LoginSignupController extends HttpServlet {
     public String loginCustomer() {
         return "login-customer.html";
     }
+    @PostMapping("/login-customer")
+    public void loginCustomer(Customer data, HttpServletResponse response) {
+        for (int i = 0; i < count; i++) {
+            String inEmail;
+            String inPassword;
+            inEmail = ownerList.get(i).getEmail();
+            inPassword = ownerList.get(i).getPassword();
+            if (Objects.equals(data.getEmail(), inEmail) && Objects.equals(data.getPassword(), inPassword)) {
+                try {
+                    response.sendRedirect("/owner-index");
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+            else{
+                try {
+                    response.sendRedirect("/login-error-page");
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
     @GetMapping("/login-error-page")
     public String loginError() {
         return "login-error-page.html";
