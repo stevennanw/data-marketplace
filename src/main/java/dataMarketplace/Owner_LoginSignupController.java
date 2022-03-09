@@ -44,7 +44,7 @@ public class Owner_LoginSignupController extends HttpServlet {
             }
             else{
                 try {
-                    response.sendRedirect("/login-error-page");
+                    response.sendRedirect("/owner-login-error-page");
                 }catch (IOException e){
                     e.printStackTrace();
                 }
@@ -53,7 +53,7 @@ public class Owner_LoginSignupController extends HttpServlet {
 
     }
 
-    @GetMapping("/login-error-page")
+    @GetMapping("/owner-login-error-page")
     public String loginError() {
         return "login-error-page.html";
     }
