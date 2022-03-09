@@ -11,9 +11,8 @@ import java.util.HashMap;
 import java.util.Objects;
 
 @Controller
-public class LoginSignupController extends HttpServlet {
+public class Owner_LoginSignupController extends HttpServlet {
     HashMap<Integer, Owner> ownerList = new HashMap<>();
-    HashMap<Integer, Customer> customerList = new HashMap<>();
 
     public void setAdminOwner(HashMap<Integer, Owner> ownerList) {
         this.ownerList = ownerList;
@@ -22,21 +21,15 @@ public class LoginSignupController extends HttpServlet {
         admin.setPassword("goosecity");
         ownerList.put(0,admin);
     }
-    public void setAdminCustomer(HashMap<Integer, Customer> customerList) {
-        this.customerList = customerList;
-        Customer admin = new Customer();
-        admin.setEmail("admin@goosecity.com");
-        admin.setPassword("goosecity");
-        customerList.put(0,admin);
-    }
-    int count = 1;
+
+    int count = 0;
     @GetMapping("/login-owner")
     public String loginOwner() {
         return "login-owner.html";
     }
     @PostMapping("/login-owner")
     public void loginOwner(Owner data, HttpServletResponse response) {
-        setAdminOwner(ownerList);
+        //setAdminOwner(ownerList);
         for (int i = 0; i < count; i++) {
             String inEmail;
             String inPassword;
@@ -59,43 +52,7 @@ public class LoginSignupController extends HttpServlet {
         }
 
     }
-    @GetMapping("/login-customer")
-    public String loginCustomer() {
-        return "login-customer.html";
-    }
 
-    @PostMapping("/login-customer")
-    public void loginCustomer(Customer data, HttpServletResponse response) {
-        setAdminCustomer(customerList);
-        for (int i = 0; i < count; i++) {
-            String inEmail;
-            String inPassword;
-            inEmail = customerList.get(i).getEmail();
-            inPassword = customerList.get(i).getPassword();
-            if(customerList.isEmpty()){
-                try {
-                    response.sendRedirect("/login-error-page");
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-            }
-            if (Objects.equals(data.getEmail(), inEmail) && Objects.equals(data.getPassword(), inPassword)) {
-                try {
-                    response.sendRedirect("/owner-index");
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-            }
-            else{
-                try {
-                    response.sendRedirect("/login-error-page");
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-            }
-        }
-
-    }
     @GetMapping("/login-error-page")
     public String loginError() {
         return "login-error-page.html";
@@ -117,19 +74,4 @@ public class LoginSignupController extends HttpServlet {
         }
     }
 
-    @GetMapping("/signup-customer")
-    public String signupCustomer() {
-        return "signup-customer.html";
-    }
-    @PostMapping("/signup-customer")
-    public void addCustomer(Customer data, HttpServletResponse response) {
-        data.setCustomerId(count);
-        customerList.put(count, data);
-        count++;
-        try {
-            response.sendRedirect("/owner-index");
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 }
