@@ -55,4 +55,9 @@ public class DatasetController extends HttpServlet {
         model.addAttribute("dataset",datasets.get(id));
         return "owner-view.html";
     }
+
+    @GetMapping("/contactus")
+    public String contactus() {
+        return "contactus.html";
+    }
 }
