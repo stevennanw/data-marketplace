@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -20,9 +21,10 @@ public class Customer_LoginSignupController extends HttpServlet {
         admin.setEmail("admin@goosecity.com");
         admin.setPassword("goosecity");
         customerList.put(0,admin);
+        admin_exist=1;
     }
     int count = 0;
-
+    int admin_exist = 0;
     @GetMapping("/login-customer")
     public String loginCustomer() {
         return "login-customer.html";
@@ -30,7 +32,9 @@ public class Customer_LoginSignupController extends HttpServlet {
 
     @PostMapping("/login-customer")
     public void loginCustomer(Customer data, HttpServletResponse response) {
-        //setAdminCustomer(customerList);
+        if(admin_exist==0){
+        setAdminCustomer(customerList);
+        }
         for (int i = 0; i < count; i++) {
             String inEmail;
             String inPassword;
@@ -40,6 +44,7 @@ public class Customer_LoginSignupController extends HttpServlet {
             if (Objects.equals(data.getEmail(), inEmail) && Objects.equals(data.getPassword(), inPassword)) {
                 try {
                     response.sendRedirect("/owner-index");
+                    break;
                 }catch (IOException e){
                     e.printStackTrace();
                 }
@@ -47,10 +52,12 @@ public class Customer_LoginSignupController extends HttpServlet {
             else{
                 try {
                     response.sendRedirect("/customer-login-error-page");
+                    break;
                 }catch (IOException e){
                     e.printStackTrace();
                 }
             }
+
         }
 
     }

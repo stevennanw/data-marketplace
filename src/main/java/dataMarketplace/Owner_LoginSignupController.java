@@ -20,16 +20,19 @@ public class Owner_LoginSignupController extends HttpServlet {
         admin.setEmail("admin@goosecity.com");
         admin.setPassword("goosecity");
         ownerList.put(0,admin);
+        admin_exist=1;
     }
-
     int count = 0;
+    int admin_exist = 0;
     @GetMapping("/login-owner")
     public String loginOwner() {
         return "login-owner.html";
     }
     @PostMapping("/login-owner")
     public void loginOwner(Owner data, HttpServletResponse response) {
-        //setAdminOwner(ownerList);
+        if(admin_exist==0){
+            setAdminOwner(ownerList);
+        }
         for (int i = 0; i < count; i++) {
             String inEmail;
             String inPassword;
@@ -38,6 +41,7 @@ public class Owner_LoginSignupController extends HttpServlet {
             if (Objects.equals(data.getEmail(), inEmail) && Objects.equals(data.getPassword(), inPassword)) {
                 try {
                     response.sendRedirect("/owner-index");
+                    break;
                 }catch (IOException e){
                     e.printStackTrace();
                 }
@@ -45,6 +49,7 @@ public class Owner_LoginSignupController extends HttpServlet {
             else{
                 try {
                     response.sendRedirect("/owner-login-error-page");
+                    break;
                 }catch (IOException e){
                     e.printStackTrace();
                 }
