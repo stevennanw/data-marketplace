@@ -44,10 +44,20 @@ public class DatasetController extends HttpServlet {
         return "view.html";
     }
 
-    @GetMapping("/owner_index")
+    @GetMapping("/owner-index")
     public String ownerDataset(Model model) {
         setDatasets(datasets);
         model.addAttribute("datasets", datasets.values());
-        return "owner_index.html";
+        return "owner-index.html";
+    }
+    @GetMapping("/owner-view/{id}")
+    public String ownerView(@PathVariable int id, Model model) {
+        model.addAttribute("dataset",datasets.get(id));
+        return "owner-view.html";
+    }
+
+    @GetMapping("/contactus")
+    public String contactus() {
+        return "contactus.html";
     }
 }

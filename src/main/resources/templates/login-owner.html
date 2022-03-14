@@ -24,23 +24,22 @@
         </div>
     </div>
     <div class="row">
-        <form>
+        <form action="/login-owner" method="post">
             <div class="form-floating my-3">
-                <input type="email" class="form-control" id="email" placeholder="Email">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email">
                 <label for="Email">Email address</label>
             </div>
             <div class="form-floating my-3">
-                <input type="password" class="form-control" id="password" placeholder="Password">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                 <label for="password">Password</label>
+            </div>
+            <div class="my-3">
+                <button class="btn btn-primary px-4" type="submit">Login</button>
             </div>
         </form>
     </div>
 
-    <div class="my-3">
-        <form action="/owner_index">
-            <button class="btn btn-primary px-4" type="submit">Login</button>
-        </form>
-    </div>
+
 
 
     <p>Don't have an account? <a href="/signup-owner">Sign up</a></p>
