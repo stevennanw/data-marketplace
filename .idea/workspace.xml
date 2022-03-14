@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ebb81f2-a9d5-4047-9da1-c189a984009a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataMarketplace/Dataset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataMarketplace/Dataset.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataMarketplace/Owner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataMarketplace/Owner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,13 +45,17 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Application.DataMarketplaceApplication">
     <configuration name="DataMarketplaceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dataMarketplace.DataMarketplaceApplication" />
-      <module name="dataMarketplace" />
+      <module name="data-marketplace" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dataMarketplace.*" />
@@ -92,6 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1646507542088</updated>
       <workItem from="1647279661489" duration="2309000" />
+      <workItem from="1647298274955" duration="881000" />
     </task>
     <servers />
   </component>
