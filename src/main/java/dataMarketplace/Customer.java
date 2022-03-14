@@ -1,17 +1,17 @@
 package dataMarketplace;
 
 import java.io.Serializable;
-//import javax.persistence.*;
+import javax.persistence.*;
 
-//@Entity
-//@Table(name = "customer")
+@Entity
+@Table(name = "customer")
 public class Customer implements Serializable{
-  //  @Id
-  //  @GeneratedValue
+    @Id
+    @GeneratedValue
     private int customerId;
-   // @Column(nullable = false)
+    @Column(nullable = false)
     private String password;
-   // @Column(nullable = false)
+    @Column(nullable = false)
     private String email;
 
 

@@ -28,13 +28,13 @@ public class DataMarketplaceApplication{
 		Connection conn = DriverManager.getConnection(url, "user", "pass");
 		Statement stmt = conn.createStatement();
 		if(!tableExists("customer", conn)){
-			stmt.executeUpdate("CREATE TABLE customer(customerId int, password varchar(255), email varchar(255));");
+			stmt.executeUpdate("CREATE TABLE customer(customerId int unsigned not null, password varchar(255) not null, email varchar(255) not null);");
 		}
 		if(!tableExists("owner", conn)){
-			stmt.executeUpdate("CREATE TABLE owner(ownerId int, password varchar(255), email varchar(255));");
+			stmt.executeUpdate("CREATE TABLE owner(ownerId int unsigned not null, password varchar(255) not null, email varchar(255) not null);");
 		}
 		if(!tableExists("dataset", conn)){
-			stmt.executeUpdate("CREATE TABLE dataset(datasetid int, name varchar(255), price int, description varchar(255), ownerId int);");
+			stmt.executeUpdate("CREATE TABLE dataset(datasetid int unsigned not null, name varchar(255) not null, price int unsigned not null, description varchar(255) not null, ownerId int unsigned not null);");
 		}
 	//	stmt.executeUpdate("insert into customer(customerId, password, email) values(1, ‘alice', 'a@google.com');");
 	//	stmt.executeUpdate("INSERT INTO customer(id, name, email) VALUES(2, ‘bob', 'b@google.coom');");
