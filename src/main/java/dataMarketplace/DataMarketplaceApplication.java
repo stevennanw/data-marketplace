@@ -25,7 +25,7 @@ public class DataMarketplaceApplication{
 		SpringApplication.run(DataMarketplaceApplication.class, args);
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/tempdb?serverTimezone=UTC";
-		Connection conn = DriverManager.getConnection(url, "user", "pass");
+		Connection conn = DriverManager.getConnection(url, "root", "pass");
 		Statement stmt = conn.createStatement();
 		if(!tableExists("customer", conn)){
 			stmt.executeUpdate("CREATE TABLE customer(customerId int unsigned not null, password varchar(255) not null, email varchar(255) not null);");
