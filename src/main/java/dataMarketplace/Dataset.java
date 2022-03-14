@@ -1,12 +1,21 @@
 package dataMarketplace;
 
 import java.io.Serializable;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "dataset")
 public class Dataset implements Serializable {
+    @Id
+    @GeneratedValue
     private int datasetid;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private int price;
+    @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
     private int ownerid;
 
     public int getDatasetid() {

@@ -1,12 +1,19 @@
 package dataMarketplace;
 
 import java.io.Serializable;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "owner")
 public class Owner implements Serializable {
-
-    private String password;
-    private String email;
+    @Id
+    @GeneratedValue
     private int ownerId;
+    @Column(nullable = false)
+    private String password;
+    @Column(nullable = false)
+    private String email;
+
 
 
     public String getPassword() {
