@@ -60,4 +60,9 @@ public class DatasetController extends HttpServlet {
     public String contactus() {
         return "contactus.html";
     }
+
+    @GetMapping("/promotion")
+    public String promote() {
+        return "promotion.html";
+    }
 }
