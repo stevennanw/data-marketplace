@@ -1,5 +1,6 @@
 package dataMarketplace;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import java.util.Objects;
 
 @Controller
 public class Owner_LoginSignupController extends HttpServlet {
+    @Autowired OwnerRepository ownerRepository;
     HashMap<Integer, Owner> ownerList = new HashMap<>();
 
     public void setAdminOwner(HashMap<Integer, Owner> ownerList) {
@@ -70,8 +72,12 @@ public class Owner_LoginSignupController extends HttpServlet {
 
     @PostMapping("/signup-owner")
     public void addOwner(Owner data, HttpServletResponse response) {
-        data.setOwnerId(count);
-        ownerList.put(count, data);
+        Owner o = new Owner();
+        o.setOwnerId(count);
+        o.setPassword(data.getPassword());
+        o.setEmail(data.getEmail());
+        ownerRepository.save(o);
+        ownerList.put(count, o);
         count++;
         try {
             response.sendRedirect("/owner-index");

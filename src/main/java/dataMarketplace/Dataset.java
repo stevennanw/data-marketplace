@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "dataset")
+@Table(name = "datasets")
 public class Dataset implements Serializable {
     @Id
     @GeneratedValue

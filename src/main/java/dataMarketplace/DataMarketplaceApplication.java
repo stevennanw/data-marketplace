@@ -27,23 +27,18 @@ public class DataMarketplaceApplication{
 		String url = "jdbc:mysql://localhost:3306/tempdb?serverTimezone=UTC";
 		Connection conn = DriverManager.getConnection(url, "root", "pass");
 		Statement stmt = conn.createStatement();
-		if(!tableExists("customer", conn)){
-			stmt.executeUpdate("CREATE TABLE customer(customerId int unsigned not null, password varchar(255) not null, email varchar(255) not null);");
+		if(!tableExists("customers", conn)){
+			stmt.executeUpdate("CREATE TABLE customer;");
 		}
-		if(!tableExists("owner", conn)){
-			stmt.executeUpdate("CREATE TABLE owner(ownerId int unsigned not null, password varchar(255) not null, email varchar(255) not null);");
+		if(!tableExists("owners", conn)){
+			stmt.executeUpdate("CREATE TABLE owner;");
 		}
-		if(!tableExists("dataset", conn)){
-			stmt.executeUpdate("CREATE TABLE dataset(datasetid int unsigned not null, name varchar(255) not null, price int unsigned not null, description varchar(255) not null, ownerId int unsigned not null);");
+		if(!tableExists("datasets", conn)){
+			stmt.executeUpdate("CREATE TABLE dataset;");
 		}
-	//	stmt.executeUpdate("insert into customer(customerId, password, email) values(1, ‘alice', 'a@google.com');");
-	//	stmt.executeUpdate("INSERT INTO customer(id, name, email) VALUES(2, ‘bob', 'b@google.coom');");
-		ResultSet rs = stmt.executeQuery("SELECT * FROM customer");
-		while (rs.next()) {
-			System.out.println(rs.getInt(1) + ": " + rs.getString(2));
-		}
-//		stmt.close();
-//		conn.close();
+
+		stmt.close();
+		conn.close();
 	}
 
 }
