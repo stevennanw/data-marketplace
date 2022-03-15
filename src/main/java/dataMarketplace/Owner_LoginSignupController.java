@@ -1,7 +1,6 @@
 package dataMarketplace;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +33,7 @@ public class Owner_LoginSignupController extends HttpServlet {
         return "login-owner.html";
     }
     @PostMapping("/login-owner")
-    public void loginOwner(Owner data, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException {
+    public void loginOwner(Owner data, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, SQLException {
       /*  if(admin_exist==0){
             setAdminOwner(ownerList);
         }
@@ -85,7 +84,7 @@ public class Owner_LoginSignupController extends HttpServlet {
         o.setPassword(data.getPassword());
         o.setEmail(data.getEmail());
         ownerRepository.save(o);
-      //  ownerList.put(count, o);
+        //ownerList.put(count, o);
         count++;
         try {
             response.sendRedirect("/owner-index");

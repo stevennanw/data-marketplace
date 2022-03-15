@@ -27,11 +27,13 @@
                         <div class="card-body">
                             <h3 class="card-title" th:text="${dataset.name}"></h3>
                             <p class="card-text" th:text="${dataset.description}"></p>
-                            <div class="d-flex">
+                            <div>
                                 <p class="price" th:text="|&euro;${dataset.price}|"></p>
-                                <form th:action="@{/view/} + ${dataset.datasetid}">
-                                    <button type="submit">Edit</button>
-                                    <button type="submit">View</button>
+                                <form th:action="@{/owner-view/} + ${dataset.datasetid}">
+                                    <button type="submit">View/Edit</button>
+                                </form>
+                                <form th:action="@{/owner-index/} + ${dataset.datasetid}">
+                                    <button type="submit">Hide</button>
                                 </form>
                             </div>
                         </div>
