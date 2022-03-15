@@ -20,6 +20,7 @@ public class Owner_LoginSignupController extends HttpServlet {
         admin.setEmail("admin@goosecity.com");
         admin.setPassword("goosecity");
         ownerList.put(0,admin);
+        count=1;
         admin_exist=1;
     }
     int count = 0;

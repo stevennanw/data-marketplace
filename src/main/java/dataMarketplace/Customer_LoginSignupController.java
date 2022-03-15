@@ -21,6 +21,7 @@ public class Customer_LoginSignupController extends HttpServlet {
         admin.setEmail("admin@goosecity.com");
         admin.setPassword("goosecity");
         customerList.put(0,admin);
+        count=1;
         admin_exist=1;
     }
     int count = 0;
