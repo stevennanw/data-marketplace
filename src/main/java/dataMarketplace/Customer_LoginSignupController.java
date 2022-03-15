@@ -71,9 +71,9 @@ public class Customer_LoginSignupController extends HttpServlet {
 
         }*/
         if(Validate.checkCustomer(data.getPassword(), data.getEmail())){
-            response.sendRedirect("/owner-index");
+            response.sendRedirect("/browsedatasets");
         }else{
-            response.sendRedirect("/owner-login-error-page");
+            response.sendRedirect("/customer-login-error-page");
         }
 
     }
@@ -96,7 +96,7 @@ public class Customer_LoginSignupController extends HttpServlet {
       //  customerList.put(count, data);
         count++;
         try {
-            response.sendRedirect("/owner-index");
+            response.sendRedirect("/browsedatasets");
         }catch (IOException e){
             e.printStackTrace();
         }
