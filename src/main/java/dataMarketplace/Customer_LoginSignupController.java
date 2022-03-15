@@ -1,5 +1,7 @@
 package dataMarketplace;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,13 +10,21 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Objects;
 
 @Controller
 public class Customer_LoginSignupController extends HttpServlet {
+    @Autowired CustomerRepository customerRepository;
     HashMap<Integer, Customer> customerList = new HashMap<>();
 
+    private Customer customer(String password, String email){
+        Customer customer = new Customer();
+        customer.setPassword(password);
+        customer.setEmail(email);
+        return customer;
+    }
     public void setAdminCustomer(HashMap<Integer, Customer> customerList) {
         this.customerList = customerList;
         Customer admin = new Customer();
@@ -32,11 +42,11 @@ public class Customer_LoginSignupController extends HttpServlet {
     }
 
     @PostMapping("/login-customer")
-    public void loginCustomer(Customer data, HttpServletResponse response) {
+    public void loginCustomer(Customer data, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException {
         if(admin_exist==0){
         setAdminCustomer(customerList);
         }
-        for (int i = 0; i < count; i++) {
+     /*   for (int i = 0; i < count; i++) {
             String inEmail;
             String inPassword;
             inEmail = customerList.get(i).getEmail();
@@ -59,6 +69,11 @@ public class Customer_LoginSignupController extends HttpServlet {
                 }
             }
 
+        }*/
+        if(Validate.checkCustomer(data.getPassword(), data.getEmail())){
+            response.sendRedirect("/owner-index");
+        }else{
+            response.sendRedirect("/owner-login-error-page");
         }
 
     }
@@ -73,8 +88,12 @@ public class Customer_LoginSignupController extends HttpServlet {
     }
     @PostMapping("/signup-customer")
     public void addCustomer(Customer data, HttpServletResponse response) {
-        data.setCustomerId(count);
-        customerList.put(count, data);
+        Customer c = new Customer();
+     //   c.setCustomerId(count);
+        c.setPassword(data.getPassword());
+        c.setEmail(data.getEmail());
+        customerRepository.save(c);
+      //  customerList.put(count, data);
         count++;
         try {
             response.sendRedirect("/owner-index");
