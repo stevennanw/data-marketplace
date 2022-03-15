@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Promotion</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <link th:href="@{/styles/header_footer.css}" rel="stylesheet"/>
+  <link th:href="@{/styles/browsedatasets.css}" rel="stylesheet"/>
+</head>
+<body>
+<div th:insert="header-owner :: header"></div>
+<main>
+  <div class="container py-5 text-center">
+    <h1 class="fw-light">Promote your datasets!</h1>
+    <h5 class="fw-light text-muted">From only 9.99 Euro a week to promote your product!</h5>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-5 mt-5 pt-5">
+        <img src="https://www.channelfutures.com/files/2018/02/Sales-Team.jpg" alt="ads" width="400px" height="300px">
+      </div>
+      <div class="col-md-6" style="background: #f5f5f5">
+        <h4 class="mt-3">Our sales team will contact you soon!</h4>
+        <form action="/contactus" method="get">
+          <div class="my-2">
+            <label for="surname">Surname</label>
+            <br>
+            <input type="text" name="surname" id="surname" placeholder="Surname">
+          </div>
+          <div class="my-2">
+            <label for="forname">Forname</label>
+            <br>
+            <input type="text" name="forname" id="forname" placeholder="Forname">
+          </div>
+          <div class=" my-2">
+            <label for="email">Email</label>
+            <br>
+            <input type="email" name="email" id="email" placeholder="Email">
+          </div>
+          <div class=" my-2">
+            <label for="query">Query</label>
+            <br>
+            <textarea name="query" id="query" placeholder="Please write your query here." rows="5" cols="20"></textarea>
+          </div>
+          <div class="my-2">
+            <button class="btn btn-secondary" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+</main>
+<div th:insert="footer :: footer"></div>
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 package dataMarketplace;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -32,8 +34,8 @@ public class Owner_LoginSignupController extends HttpServlet {
         return "login-owner.html";
     }
     @PostMapping("/login-owner")
-    public void loginOwner(Owner data, HttpServletResponse response) {
-        if(admin_exist==0){
+    public void loginOwner(Owner data, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException {
+      /*  if(admin_exist==0){
             setAdminOwner(ownerList);
         }
         for (int i = 0; i < count; i++) {
@@ -57,6 +59,12 @@ public class Owner_LoginSignupController extends HttpServlet {
                     e.printStackTrace();
                 }
             }
+        }*/
+
+        if(Validate.checkOwner(data.getPassword(), data.getEmail())){
+            response.sendRedirect("/owner-index");
+        }else{
+            response.sendRedirect("/owner-login-error-page");
         }
 
     }
@@ -77,7 +85,7 @@ public class Owner_LoginSignupController extends HttpServlet {
         o.setPassword(data.getPassword());
         o.setEmail(data.getEmail());
         ownerRepository.save(o);
-        ownerList.put(count, o);
+      //  ownerList.put(count, o);
         count++;
         try {
             response.sendRedirect("/owner-index");
