@@ -116,4 +116,35 @@ public class DatasetController extends HttpServlet {
     public String promote() {
         return "promotion.html";
     }
+
+
+    HashMap<Dataset, Integer> shoppingCart = new HashMap<>();
+    @GetMapping("/addcart/{id}")
+    public String addcart(@PathVariable int id, Model model, HttpServletResponse response) {
+        System.out.println("Hello");
+        Dataset dataset = datasets.get(id);
+        if(!shoppingCart.containsKey(dataset))
+        {
+            shoppingCart.put(dataset,1);
+        }else{
+            shoppingCart.put(dataset,shoppingCart.get(dataset)+1);
+        }
+        System.out.println("jo");
+        System.out.println(shoppingCart.size());
+        model.addAttribute("dataset",datasets.get(id));
+        return "addcart.html";
+    }
+
+    // TODO
+    @GetMapping("/payment")
+    public String browseCart(Model model) {
+        //setDatasets(shoppingCart);
+        System.out.println("Hi");
+        for (int i =0; i<shoppingCart.size();i++){
+            System.out.println(shoppingCart.values());
+        }
+        //model.addAttribute("datasets", shoppingCart.values());
+        model.addAttribute("datasets", shoppingCart.values());
+        return "payment.html";
+    }
 }
