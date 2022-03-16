@@ -76,20 +76,20 @@ public class Owner_LoginSignupController extends HttpServlet {
     public String signupOwner() {
         return "signup-owner.html";
     }
+    @GetMapping("/owner-signup-error-page")
+    public String signupError() { return "signup-error-page.html"; }
 
     @PostMapping("/signup-owner")
-    public void addOwner(Owner data, HttpServletResponse response) {
+    public void addOwner(Owner data, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException {
         Owner o = new Owner();
-        o.setOwnerId(count);
-        o.setPassword(data.getPassword());
-        o.setEmail(data.getEmail());
-        ownerRepository.save(o);
-        //ownerList.put(count, o);
-        count++;
-        try {
+        if(Validate.checkOwnerID(data.getOwnerId())){
+            response.sendRedirect("/owner-signup-error-page");
+        }else {
+            o.setOwnerId(data.getOwnerId());
+            o.setPassword(data.getPassword());
+            o.setEmail(data.getEmail());
+            ownerRepository.save(o);
             response.sendRedirect("/owner-index");
-        }catch (IOException e){
-            e.printStackTrace();
         }
     }
 
