@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="../static/jsfiles/payment.js"></script>
+    <script src="/js/payment.js" async></script>
 </head>
 <style>
     .container {
@@ -47,74 +47,15 @@
 <!--                    </div>-->
 <!--                </div>-->
 
-                <ul class="list-group mb-3" th:each="dataset : ${shoppingCart}">
-                    <li class="list-group-item cart-items">
-                        <div class="row cart-row">
-                            <div class="col-8">
-                                <h6 class="my-0" th:text="${dataset.name}"></h6>
-                                <small class="text-muted" th:text="${dataset.description}"></small>
-                            </div>
-                            <div class="col-1 pt-2">
-<!--                                <span class="text-muted cart-price" class="price" th:text="|&euro;${dataset.price}|"></span>-->
-                            </div>
-                            <div class="col-1 pt-2">
-                                <form action="">
-                                    <label for="itemNum"></label>
-                                    <input type="number" id="itemNum" name="itemNum" placeholder="1" style="width: 40px; height: 25px" min="0" class='price'>
-                                </form>
-                            </div>
-                            <div class="col-1 pt-1">
-                                <button class="btn btn-sm btn-danger remove-btn" type="button">Remove</button>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-2">
-                                <span>Total (EUR)</span>
-                            </div>
-
-                            <div class="col-8"></div>
-                            <div class="col-1">
-                                <strong class="total-price">€17</strong>
-                            </div>
-                        </div>
-
-
-                    </li>
-                </ul>
-
-<!--                <ul class="list-group mb-3">-->
+<!--                <ul class="list-group mb-3" th:each="dataset : ${shoppingCart}">-->
 <!--                    <li class="list-group-item cart-items">-->
 <!--                        <div class="row cart-row">-->
 <!--                            <div class="col-8">-->
-<!--                                <h6 class="my-0">Example Product</h6>-->
-<!--                                <small class="text-muted">Example description</small>-->
+<!--                                <h6 class="my-0" th:text="${dataset.name}"></h6>-->
+<!--                                <small class="text-muted" th:text="${dataset.description}"></small>-->
 <!--                            </div>-->
 <!--                            <div class="col-1 pt-2">-->
-<!--                                <span class="text-muted cart-price">€5</span>-->
-<!--                            </div>-->
-<!--                            <div class="col-1 pt-2">-->
-<!--                                <form action="">-->
-<!--                                    <label for="itemNum"></label>-->
-<!--                                    <input type="number" id="itemNum" name="itemNum" placeholder="1" style="width: 40px; height: 25px" min="0" class='price'>-->
-<!--                                </form>-->
-<!--                            </div>-->
-<!--                            <div class="col-1 pt-1">-->
-<!--                                    <button class="btn btn-sm btn-danger remove-btn" type="button">Remove</button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </li>-->
-
-<!--                    <li class="list-group-item cart-items">-->
-<!--                        <div class="row cart-row">-->
-<!--                            <div class="col-8">-->
-<!--                                <h6 class="my-0">Example Product</h6>-->
-<!--                                <small class="text-muted">Example description</small>-->
-<!--                            </div>-->
-<!--                            <div class="col-1 pt-2">-->
-<!--                                <span class="text-muted cart-price">€5</span>-->
+<!--&lt;!&ndash;                                <span class="text-muted cart-price" class="price" th:text="|&euro;${dataset.price}|"></span>&ndash;&gt;-->
 <!--                            </div>-->
 <!--                            <div class="col-1 pt-2">-->
 <!--                                <form action="">-->
@@ -143,6 +84,65 @@
 
 <!--                    </li>-->
 <!--                </ul>-->
+
+                <ul class="list-group mb-3">
+                    <li class="list-group-item cart-items">
+                        <div class="row cart-row">
+                            <div class="col-8">
+                                <h6 class="my-0">Example Product</h6>
+                                <small class="text-muted">Example description</small>
+                            </div>
+                            <div class="col-1 pt-2">
+                                <span class="text-muted cart-price">€5</span>
+                            </div>
+                            <div class="col-1 pt-2">
+                                <form action="">
+                                    <label for="itemNum"></label>
+                                    <input type="number" id="itemNum" name="itemNum" placeholder="1" style="width: 40px; height: 25px" min="0" class='price'>
+                                </form>
+                            </div>
+                            <div class="col-1 pt-1">
+                                    <button class="btn btn-sm btn-danger remove-btn" type="button">Remove</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item cart-items">
+                        <div class="row cart-row">
+                            <div class="col-8">
+                                <h6 class="my-0">Example Product</h6>
+                                <small class="text-muted">Example description</small>
+                            </div>
+                            <div class="col-1 pt-2">
+                                <span class="text-muted cart-price">€5</span>
+                            </div>
+                            <div class="col-1 pt-2">
+                                <form action="">
+                                    <label for="itemNum"></label>
+                                    <input type="number" id="itemNum" name="itemNum" placeholder="1" style="width: 40px; height: 25px" min="0" class='price'>
+                                </form>
+                            </div>
+                            <div class="col-1 pt-1">
+                                <button class="btn btn-sm btn-danger remove-btn" type="button">Remove</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-2">
+                                <span>Total (EUR)</span>
+                            </div>
+
+                            <div class="col-8"></div>
+                            <div class="col-1">
+                                <strong class="total-price">€17</strong>
+                            </div>
+                        </div>
+
+
+                    </li>
+                </ul>
 
             </div>
             <div class="col-15">

@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
     let removeCartItemButton = document.getElementsByClassName('remove-btn')
     console.log(removeCartItemButton)
