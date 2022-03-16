@@ -70,7 +70,7 @@ public class Customer_LoginSignupController extends HttpServlet {
             }
 
         }*/
-        if(Validate.checkCustomer(data.getPassword(), data.getEmail())){
+        if(Validate.checkCustomer(data.getCustomerId(), data.getPassword())){
             response.sendRedirect("/browsedatasets");
         }else{
             response.sendRedirect("/customer-login-error-page");
@@ -82,23 +82,26 @@ public class Customer_LoginSignupController extends HttpServlet {
         return "login-error-page.html";
     }
 
+    @GetMapping("/customer-signup-error-page")
+    public String signupError() { return "signup-error-page.html"; }
+
     @GetMapping("/signup-customer")
     public String signupCustomer() {
         return "signup-customer.html";
     }
     @PostMapping("/signup-customer")
-    public void addCustomer(Customer data, HttpServletResponse response) {
+    public void addCustomer(Customer data, HttpServletResponse response) throws SQLException, ClassNotFoundException, IOException {
         Customer c = new Customer();
-     //   c.setCustomerId(count);
-        c.setPassword(data.getPassword());
-        c.setEmail(data.getEmail());
-        customerRepository.save(c);
-      //  customerList.put(count, data);
-        count++;
-        try {
+        if(Validate.checkCustomerID(data.getCustomerId())){
+            response.sendRedirect("/customer-signup-error-page");
+        }else {
+            c.setCustomerId(data.getCustomerId());
+            c.setPassword(data.getPassword());
+            c.setEmail(data.getEmail());
+            customerRepository.save(c);
+            //  customerList.put(count, data);
+            count++;
             response.sendRedirect("/browsedatasets");
-        }catch (IOException e){
-            e.printStackTrace();
         }
     }
 }

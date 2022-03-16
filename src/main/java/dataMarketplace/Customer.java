@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name = "customers")
 public class Customer implements Serializable{
     @Id
-    @GeneratedValue
+    //@GeneratedValue
     private int customerId;
     @Column(nullable = false)
     private String password;

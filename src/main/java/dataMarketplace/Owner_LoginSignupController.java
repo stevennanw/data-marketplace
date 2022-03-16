@@ -60,7 +60,7 @@ public class Owner_LoginSignupController extends HttpServlet {
             }
         }*/
 
-        if(Validate.checkOwner(data.getPassword(), data.getEmail())){
+        if(Validate.checkOwner(data.getOwnerId(), data.getPassword())){
             response.sendRedirect("/owner-index");
         }else{
             response.sendRedirect("/owner-login-error-page");
