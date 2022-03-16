@@ -18,6 +18,7 @@ public class DatasetController extends HttpServlet {
     HashMap<Integer, Dataset> datasets = new HashMap<>();
     int initialize = 0;
     int count=0;
+    int datasetID=0;
     public void setDatasets(HashMap<Integer, Dataset> datasets) {
         this.datasets = datasets;
         datasets.put(0,new Dataset(0,"name0",0,"description0",0));
@@ -69,6 +70,7 @@ public class DatasetController extends HttpServlet {
     }
     @GetMapping("/owner-view/{id}")
     public String ownerView(@PathVariable int id, Model model) {
+        datasetID=id;
         model.addAttribute("dataset",datasets.get(id));
         return "owner-view.html";
     }
@@ -90,7 +92,21 @@ public class DatasetController extends HttpServlet {
             e.printStackTrace();
         }
     }
+    @GetMapping("/owner-edit")
+    public String editDataset() {
+        return "owner-edit.html";
+    }
+    @PostMapping("/owner-edit")
+    public void editDataset(@RequestParam(name = "name") String name, @RequestParam(name = "price") int price, @RequestParam(name = "description") String description, HttpServletResponse response) {
 
+        Dataset data = new Dataset(datasetID, name, price, description, 0);
+        datasets.replace(datasetID, data);
+        try {
+            response.sendRedirect("/owner-index");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
     @GetMapping("/contactus")
     public String contactus() {
         return "contactus.html";
