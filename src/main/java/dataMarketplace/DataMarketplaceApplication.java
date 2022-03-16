@@ -32,9 +32,12 @@ public class DataMarketplaceApplication{
 		if(!tableExists("owners", conn)){
 			stmt.executeUpdate("CREATE TABLE owner;");
 		}
+		if(!tableExists("orders", conn)){
+			stmt.executeUpdate("CREATE TABLE order;");
+		}/*
 		if(!tableExists("datasets", conn)){
 			stmt.executeUpdate("CREATE TABLE dataset;");
-		}
+		}*/
 
 		stmt.close();
 		conn.close();
