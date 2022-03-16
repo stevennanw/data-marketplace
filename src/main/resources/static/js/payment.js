@@ -14,9 +14,6 @@ $(document).ready(function(){
 })
 
 
-
-
-
 function updateTotal(){
     var cartItemContainer = document.getElementsByClassName('cart-items')[0]
     var cartRows = cartItemContainer.getElementsByClassName('cart-row')
