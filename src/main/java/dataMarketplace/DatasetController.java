@@ -81,11 +81,10 @@ public class DatasetController extends HttpServlet {
 
     @PostMapping("/owner-adddataset")
     public void addDataset(@RequestParam(name = "name") String name, @RequestParam(name = "price") int price, @RequestParam(name = "description") String description, HttpServletResponse response) {
-        count = datasets.size() -1;
+        count = datasets.size();
         System.out.print(count);
         Dataset data = new Dataset(count, name, price, description, 0);
         datasets.put(count, data);
-        count++;
         try {
             response.sendRedirect("/owner-index");
         }catch (IOException e){
