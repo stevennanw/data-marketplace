@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Table(name = "owners")
 public class Owner implements Serializable {
     @Id
-    @GeneratedValue
     private int ownerId;
     @Column(nullable = false)
     private String password;
