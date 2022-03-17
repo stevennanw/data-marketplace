@@ -9,9 +9,17 @@
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <link th:href="@{/styles/header_footer.css}" rel="stylesheet"/>
     <link th:href="@{/styles/browsedatasets.css}" rel="stylesheet"/>
+    <script src="/js/darkmode.js" async></script>
+    <link rel="stylesheet" href="/styles/darkmode.css">
 </head>
 <body>
 <div th:insert="header-owner :: header"></div>
+<div class="position-fixed py-2 px-3 bg-dark text-white rounded-pill" style="bottom:1rem;left:1rem;">
+    <div class="form-check form-switch pull-right">
+        <input class="form-check-input" type="checkbox" onchange="dark()">
+        <label>Darkmode</label>
+    </div>
+</div>
 <main>
     <div class="container py-5 text-center">
         <h2 class="fw-light">Hi There! What's The Plan Today?</h2>
