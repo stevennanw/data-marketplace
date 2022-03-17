@@ -139,11 +139,29 @@ public class DatasetController extends HttpServlet {
     public String browseCart(Model model) {
         //setDatasets(shoppingCart);
         System.out.println("Hi");
-        for (int i =0; i<shoppingCart.size();i++){
-            System.out.println(shoppingCart.values());
+
+        HashMap<Integer, Item> cart = new HashMap<>();
+        int i = 0;
+        int totalmoney = 0;
+        for (Dataset d : shoppingCart.keySet()) {
+            System.out.println("getdatasetID"+d.getDatasetid());
+            cart.put(i,new Item(d.getDatasetid(),d.getName(),d.getPrice(),d.getDescription(),0));
+            i++;
         }
+        i = 0;
+        for (int num : shoppingCart.values()) {
+            System.out.println("num"+num);
+            cart.put(i,new Item(cart.get(i).getDatasetid(),cart.get(i).getName(),cart.get(i).getPrice(),cart.get(i).getDescription(),num));
+            totalmoney = totalmoney + cart.get(i).getPrice() * num;
+            i++;
+        }
+
+        System.out.println("size:"+cart.size());
+
+
         //model.addAttribute("datasets", shoppingCart.values());
-        model.addAttribute("datasets", shoppingCart.values());
+        model.addAttribute("cart", cart.values());
+        model.addAttribute("totalmoney", totalmoney);
         return "payment.html";
     }
 }

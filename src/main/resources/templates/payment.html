@@ -29,7 +29,7 @@
                     Your cart
                 </h4>
 
-<!--                <div th:each="dataset : ${shoppingCart}">-->
+<!--                <div th:each="dataset : ${cart}">-->
 <!--                    <div class="col">-->
 <!--                        <div class="card">-->
 <!--                            <img src="https://www.britive.com/wp-content/uploads/2021/08/iStock-1221293664-1.jpg" width="100%" height="100%">-->
@@ -47,15 +47,87 @@
 <!--                    </div>-->
 <!--                </div>-->
 
-<!--                <ul class="list-group mb-3" th:each="dataset : ${shoppingCart}">-->
+                <ul class="list-group">
+                    <li class="list-group-item cart-items">
+                        <div class="row cart-row">
+                            <div class="col-8">
+                                <h6 class="my-0">name</h6>
+                                <small class="text-muted">description</small>
+                            </div>
+                            <div class="col-1 pt-2">
+                                <span class="text-muted">price</span>
+                            </div>
+                            <div class="col-1 pt-2">
+                                <span class="text-muted">number</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="list-group" th:each="dataset : ${cart}">
+                    <li class="list-group-item cart-items">
+                        <div class="row cart-row">
+                            <div class="col-8">
+                                <h6 class="my-0" th:text="${dataset.name}"></h6>
+                                <small class="text-muted" th:text="${dataset.description}"></small>
+                            </div>
+                            <div class="col-1 pt-2">
+                                <span class="text-muted" th:text="${dataset.price}"></span>
+                            </div>
+                            <div class="col-1 pt-2">
+                                <span class="text-muted" th:text="${dataset.number}"></span>
+                            </div>
+                            <div class="col-1 pt-1">
+                                <button class="btn btn-sm btn-danger remove-btn" type="button">Remove</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-2">
+                                <span>Total (EUR)</span>
+                            </div>
+
+                            <div class="col-8"></div>
+                            <div class="col-1">
+                                <strong class="total-price" th:text="${totalmoney}">€17</strong>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+<!--                <ul class="list-group mb-3">-->
 <!--                    <li class="list-group-item cart-items">-->
 <!--                        <div class="row cart-row">-->
 <!--                            <div class="col-8">-->
-<!--                                <h6 class="my-0" th:text="${dataset.name}"></h6>-->
-<!--                                <small class="text-muted" th:text="${dataset.description}"></small>-->
+<!--                                <h6 class="my-0">Example Product</h6>-->
+<!--                                <small class="text-muted">Example description</small>-->
 <!--                            </div>-->
 <!--                            <div class="col-1 pt-2">-->
-<!--&lt;!&ndash;                                <span class="text-muted cart-price" class="price" th:text="|&euro;${dataset.price}|"></span>&ndash;&gt;-->
+<!--                                <span class="text-muted cart-price">€5</span>-->
+<!--                            </div>-->
+<!--                            <div class="col-1 pt-2">-->
+<!--                                <form action="">-->
+<!--                                    <label for="itemNum"></label>-->
+<!--                                    <input type="number" id="itemNum" name="itemNum" placeholder="1" style="width: 40px; height: 25px" min="0" class='price'>-->
+<!--                                </form>-->
+<!--                            </div>-->
+<!--                            <div class="col-1 pt-1">-->
+<!--                                    <button class="btn btn-sm btn-danger remove-btn" type="button">Remove</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </li>-->
+
+<!--                    <li class="list-group-item cart-items">-->
+<!--                        <div class="row cart-row">-->
+<!--                            <div class="col-8">-->
+<!--                                <h6 class="my-0">Example Product</h6>-->
+<!--                                <small class="text-muted">Example description</small>-->
+<!--                            </div>-->
+<!--                            <div class="col-1 pt-2">-->
+<!--                                <span class="text-muted cart-price">€5</span>-->
 <!--                            </div>-->
 <!--                            <div class="col-1 pt-2">-->
 <!--                                <form action="">-->
@@ -85,66 +157,7 @@
 <!--                    </li>-->
 <!--                </ul>-->
 
-                <ul class="list-group mb-3">
-                    <li class="list-group-item cart-items">
-                        <div class="row cart-row">
-                            <div class="col-8">
-                                <h6 class="my-0">Example Product</h6>
-                                <small class="text-muted">Example description</small>
-                            </div>
-                            <div class="col-1 pt-2">
-                                <span class="text-muted cart-price">€5</span>
-                            </div>
-                            <div class="col-1 pt-2">
-                                <form action="">
-                                    <label for="itemNum"></label>
-                                    <input type="number" id="itemNum" name="itemNum" placeholder="1" style="width: 40px; height: 25px" min="0" class='price'>
-                                </form>
-                            </div>
-                            <div class="col-1 pt-1">
-                                    <button class="btn btn-sm btn-danger remove-btn" type="button">Remove</button>
-                            </div>
-                        </div>
-                    </li>
 
-                    <li class="list-group-item cart-items">
-                        <div class="row cart-row">
-                            <div class="col-8">
-                                <h6 class="my-0">Example Product</h6>
-                                <small class="text-muted">Example description</small>
-                            </div>
-                            <div class="col-1 pt-2">
-                                <span class="text-muted cart-price">€5</span>
-                            </div>
-                            <div class="col-1 pt-2">
-                                <form action="">
-                                    <label for="itemNum"></label>
-                                    <input type="number" id="itemNum" name="itemNum" placeholder="1" style="width: 40px; height: 25px" min="0" class='price'>
-                                </form>
-                            </div>
-                            <div class="col-1 pt-1">
-                                <button class="btn btn-sm btn-danger remove-btn" type="button">Remove</button>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-2">
-                                <span>Total (EUR)</span>
-                            </div>
-
-                            <div class="col-8"></div>
-                            <div class="col-1">
-                                <strong class="total-price">€17</strong>
-                            </div>
-                        </div>
-
-
-                    </li>
-                </ul>
-
-            </div>
             <div class="col-15">
                 <h4 class="mb-3 text-primary">Billing Information</h4>
                 <form class="needs-validation" novalidate>
