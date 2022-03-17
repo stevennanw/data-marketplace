@@ -38,7 +38,7 @@
                             <div class="d-flex">
                                 <p class="price" th:text="|&euro;${dataset.price}|"></p>
                                 <form th:action="@{/view/} + ${dataset.datasetid}">
-                                    <button type="submit">View</button>
+                                    <button class="btn" type="submit">View</button>
                                 </form>
                             </div>
                         </div>

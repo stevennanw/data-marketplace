@@ -1,4 +1,21 @@
-.dark-mode {
-    background-color: black;
+.dark-mode{
+    background-color: #1e1e1e;
     color: white;
+}
+.dark-mode a{
+    background-color: #1e1e1e;
+    color: white;
+}
+.dark-mode .card-body{
+    background-color: #1e1e1e;
+    color: white;
+}
+.dark-mode footer{
+    background-color: #1e1e1e;
+    color: white;
+}
+.dark-mode .btn{
+    background-color: grey;
+    border: none;
+    color:white;
 }
