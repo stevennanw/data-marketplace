@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,7 +22,6 @@ public class DatasetController extends HttpServlet {
     int initialize = 0;
     int count=0;
     int datasetID=0;
-    int orderId = 0;
     public void setDatasets(HashMap<Integer, Dataset> datasets) {
         this.datasets = datasets;
         datasets.put(0,new Dataset(0,"name0",0,"description0",0));
@@ -123,7 +123,7 @@ public class DatasetController extends HttpServlet {
     HashMap<Dataset, Integer> shoppingCart = new HashMap<>();
     @GetMapping("/addcart/{id}")
     public String addcart(@PathVariable int id, Model model, HttpServletResponse response) {
-        System.out.println("Hello");
+   //     System.out.println("Hello");
         Dataset dataset = datasets.get(id);
         if(!shoppingCart.containsKey(dataset))
         {
@@ -131,8 +131,8 @@ public class DatasetController extends HttpServlet {
         }else{
             shoppingCart.put(dataset,shoppingCart.get(dataset)+1);
         }
-        System.out.println("jo");
-        System.out.println(shoppingCart.size());
+    //    System.out.println("jo");
+    //    System.out.println(shoppingCart.size());
         model.addAttribute("dataset",datasets.get(id));
         return "addcart.html";
     }
@@ -163,9 +163,9 @@ public class DatasetController extends HttpServlet {
     }
     // TODO
     @GetMapping("/payment")
-    public String browseCart(Model model) {
+    public String browseCart(Model model) throws SQLException, ClassNotFoundException {
         //setDatasets(shoppingCart);
-      //  System.out.println("Hi");
+        String description = "";
 
         HashMap<Integer, Item> cart = new HashMap<>();
         int i = 0;
@@ -173,6 +173,7 @@ public class DatasetController extends HttpServlet {
         for (Dataset d : shoppingCart.keySet()) {
          //   System.out.println("getdatasetID"+d.getDatasetid());
             cart.put(i,new Item(d.getDatasetid(),d.getName(),d.getPrice(),d.getDescription(),0));
+            description += d.getName()+" ";
             i++;
         }
         i = 0;
@@ -184,14 +185,20 @@ public class DatasetController extends HttpServlet {
         }
 
      //   System.out.println("size:"+cart.size());
-        String description = shoppingCart.toString();
+
 
         Order o = new Order();
+        int orderId = 10000 + (int) (Math.random() * 10000);
+        while(Validate.checkOrderID(orderId)){
+            orderId = 10000 + (int) (Math.random() * 10000);
+        }
         o.setOrderID(orderId);
-        orderId++;
-        o.setCustomerID(Customer_LoginSignupController.customer_login_id);
+
+        o.setCustomerID(Singleton.customer_login_id);
+        System.out.println(Singleton.getInstance());
         o.setDescription(description);
         o.setState(true);
+        orderRepository.save(o);
         //model.addAttribute("datasets", shoppingCart.values());
         model.addAttribute("cart", cart.values());
         model.addAttribute("totalmoney", totalmoney);
