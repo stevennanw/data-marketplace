@@ -85,7 +85,9 @@
                                 <span class="text-muted" th:text="${dataset.number}"></span>
                             </div>
                             <div class="col-1 pt-1">
-                                <button class="btn btn-sm btn-danger remove-btn" type="button">Remove</button>
+                                <form th:action="@{/removecart/} + ${dataset.datasetid}">
+                                    <button class="btn btn-sm btn-danger" type="submit">Remove</button>
+                                </form>
                             </div>
                         </div>
                     </li>

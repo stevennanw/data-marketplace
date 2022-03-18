@@ -133,7 +133,13 @@ public class DatasetController extends HttpServlet {
         model.addAttribute("dataset",datasets.get(id));
         return "addcart.html";
     }
-
+    @GetMapping("/removecart/{id}")
+    public String removecart(@PathVariable int id, Model model) {
+        Dataset dataset = datasets.get(id);
+        shoppingCart.remove(dataset);
+        model.addAttribute("datasets", shoppingCart.values());
+        return "removecart.html";
+    }
     // TODO
     @GetMapping("/payment")
     public String browseCart(Model model) {
