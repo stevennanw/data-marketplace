@@ -16,6 +16,7 @@ import java.util.Objects;
 
 @Controller
 public class Customer_LoginSignupController extends HttpServlet {
+    public static int customer_login_id = 0;
     @Autowired CustomerRepository customerRepository;
     HashMap<Integer, Customer> customerList = new HashMap<>();
 
@@ -92,6 +93,7 @@ public class Customer_LoginSignupController extends HttpServlet {
     @PostMapping("/signup-customer")
     public void addCustomer(Customer data, HttpServletResponse response) throws SQLException, ClassNotFoundException, IOException {
         Customer c = new Customer();
+        customer_login_id = data.getCustomerId();
         if(Validate.checkCustomerID(data.getCustomerId())){
             response.sendRedirect("/customer-signup-error-page");
         }else {
@@ -100,7 +102,7 @@ public class Customer_LoginSignupController extends HttpServlet {
             c.setEmail(data.getEmail());
             customerRepository.save(c);
             //  customerList.put(count, data);
-            count++;
+            //count++;
             response.sendRedirect("/browsedatasets");
         }
     }

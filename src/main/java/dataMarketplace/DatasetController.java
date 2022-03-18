@@ -1,5 +1,6 @@
 package dataMarketplace;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +16,12 @@ import java.util.HashMap;
 
 @Controller
 public class DatasetController extends HttpServlet {
+    @Autowired OrderRepository orderRepository;
     HashMap<Integer, Dataset> datasets = new HashMap<>();
     int initialize = 0;
     int count=0;
     int datasetID=0;
+    int orderId = 0;
     public void setDatasets(HashMap<Integer, Dataset> datasets) {
         this.datasets = datasets;
         datasets.put(0,new Dataset(0,"name0",0,"description0",0));
@@ -162,27 +165,33 @@ public class DatasetController extends HttpServlet {
     @GetMapping("/payment")
     public String browseCart(Model model) {
         //setDatasets(shoppingCart);
-        System.out.println("Hi");
+      //  System.out.println("Hi");
 
         HashMap<Integer, Item> cart = new HashMap<>();
         int i = 0;
         int totalmoney = 0;
         for (Dataset d : shoppingCart.keySet()) {
-            System.out.println("getdatasetID"+d.getDatasetid());
+         //   System.out.println("getdatasetID"+d.getDatasetid());
             cart.put(i,new Item(d.getDatasetid(),d.getName(),d.getPrice(),d.getDescription(),0));
             i++;
         }
         i = 0;
         for (int num : shoppingCart.values()) {
-            System.out.println("num"+num);
+         //   System.out.println("num"+num);
             cart.put(i,new Item(cart.get(i).getDatasetid(),cart.get(i).getName(),cart.get(i).getPrice(),cart.get(i).getDescription(),num));
             totalmoney = totalmoney + cart.get(i).getPrice() * num;
             i++;
         }
 
-        System.out.println("size:"+cart.size());
+     //   System.out.println("size:"+cart.size());
+        String description = shoppingCart.toString();
 
-
+        Order o = new Order();
+        o.setOrderID(orderId);
+        orderId++;
+        o.setCustomerID(Customer_LoginSignupController.customer_login_id);
+        o.setDescription(description);
+        o.setState(true);
         //model.addAttribute("datasets", shoppingCart.values());
         model.addAttribute("cart", cart.values());
         model.addAttribute("totalmoney", totalmoney);
