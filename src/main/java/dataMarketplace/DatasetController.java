@@ -163,17 +163,14 @@ public class DatasetController extends HttpServlet {
     }
     // TODO
     @GetMapping("/payment")
-    public String browseCart(Model model) throws SQLException, ClassNotFoundException {
+    public String browseCart(Model model){
         //setDatasets(shoppingCart);
-        String description = "";
-
         HashMap<Integer, Item> cart = new HashMap<>();
         int i = 0;
         int totalmoney = 0;
         for (Dataset d : shoppingCart.keySet()) {
          //   System.out.println("getdatasetID"+d.getDatasetid());
             cart.put(i,new Item(d.getDatasetid(),d.getName(),d.getPrice(),d.getDescription(),0));
-            description += d.getName()+" ";
             i++;
         }
         i = 0;
@@ -185,8 +182,18 @@ public class DatasetController extends HttpServlet {
         }
 
      //   System.out.println("size:"+cart.size());
+        //model.addAttribute("datasets", shoppingCart.values());
+        model.addAttribute("cart", cart.values());
+        model.addAttribute("totalmoney", totalmoney);
+        return "payment.html";
+    }
 
-
+    @GetMapping("/checkout")
+    public String checkout() throws SQLException, ClassNotFoundException {
+        StringBuilder description = new StringBuilder();
+        for (Dataset d : shoppingCart.keySet()) {
+            description.append(d.getName()).append(" ");
+        }
         Order o = new Order();
         int orderId = 10000 + (int) (Math.random() * 10000);
         while(Validate.checkOrderID(orderId)){
@@ -196,12 +203,9 @@ public class DatasetController extends HttpServlet {
 
         o.setCustomerID(Singleton.customer_login_id);
         System.out.println(Singleton.getInstance());
-        o.setDescription(description);
+        o.setDescription(description.toString());
         o.setState(true);
         orderRepository.save(o);
-        //model.addAttribute("datasets", shoppingCart.values());
-        model.addAttribute("cart", cart.values());
-        model.addAttribute("totalmoney", totalmoney);
-        return "payment.html";
+        return "checkout.html";
     }
 }
