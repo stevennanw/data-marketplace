@@ -7,16 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link th:href="@{/styles/header_footer.css}" rel="stylesheet"/>
     <script src="/js/payment.js" async></script>
     <script src="/js/darkmode.js" async></script>
     <link rel="stylesheet" href="/styles/darkmode.css">
 </head>
-<style>
-    .container {
-        max-width: 960px;
-    }
-
-</style>
 <body>
 <div th:insert="header-customer :: header"></div>
 <div class="container">
@@ -37,15 +32,11 @@
                 <h4 class="text-primary">
                     Your order number
                 </h4>
-                <h5 id = "rand"></h5>
-                <script>
-                    let x = Math.floor((Math.random()*10000000)+10000001);
-                    document.getElementById("rand").innerHTML = x;
-                </script>
+                <h5 th:text="${orderId}"></h5>
             </div>
             <div class="col-15">
                 <h4 class="mb-3 text-primary">Order Items and Payment Details</h4>
-
+                <h5 th:text="${description}"></h5>
             </div>
         </div>
     </main>

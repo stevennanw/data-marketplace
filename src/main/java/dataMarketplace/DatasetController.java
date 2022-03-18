@@ -189,11 +189,12 @@ public class DatasetController extends HttpServlet {
     }
 
     @GetMapping("/checkout")
-    public String checkout() throws SQLException, ClassNotFoundException {
+    public String checkout(Model model) throws SQLException, ClassNotFoundException {
         StringBuilder description = new StringBuilder();
-        for (Dataset d : shoppingCart.keySet()) {
-            description.append(d.getName()).append(" ");
+        for (Dataset d: shoppingCart.keySet()){
+            description.append(shoppingCart.get(d)).append("*").append(d.getName()).append(" ").append(d.getPrice()*shoppingCart.get(d)).append("euro,");
         }
+        description.deleteCharAt(description.length()-1);
         Order o = new Order();
         int orderId = 10000 + (int) (Math.random() * 10000);
         while(Validate.checkOrderID(orderId)){
@@ -202,10 +203,13 @@ public class DatasetController extends HttpServlet {
         o.setOrderID(orderId);
 
         o.setCustomerID(Singleton.customer_login_id);
-        System.out.println(Singleton.getInstance());
+       // System.out.println(Singleton.getInstance());
         o.setDescription(description.toString());
         o.setState(true);
-        orderRepository.save(o);
+        if(Singleton.customer_login_id != 0)
+            orderRepository.save(o);
+        model.addAttribute("orderId",orderId);
+        model.addAttribute("description",description);
         return "checkout.html";
     }
 }
