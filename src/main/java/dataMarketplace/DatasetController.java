@@ -133,6 +133,24 @@ public class DatasetController extends HttpServlet {
         model.addAttribute("dataset",datasets.get(id));
         return "addcart.html";
     }
+    @GetMapping("/addnumber/{id}")
+    public String addnumber(@PathVariable int id, Model model) {
+        Dataset dataset = datasets.get(id);
+        shoppingCart.replace(dataset, shoppingCart.get(dataset)+1);
+        model.addAttribute("datasets", shoppingCart.values());
+        return "editcart.html";
+    }
+    @GetMapping("/subnumber/{id}")
+    public String subnumber(@PathVariable int id, Model model) {
+        Dataset dataset = datasets.get(id);
+        if(shoppingCart.get(dataset)==1){
+            shoppingCart.remove(dataset);
+        }else {
+            shoppingCart.replace(dataset, shoppingCart.get(dataset) - 1);
+        }
+        model.addAttribute("datasets", shoppingCart.values());
+        return "editcart.html";
+    }
     @GetMapping("/removecart/{id}")
     public String removecart(@PathVariable int id, Model model) {
         Dataset dataset = datasets.get(id);

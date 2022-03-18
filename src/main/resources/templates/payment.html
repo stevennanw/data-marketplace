@@ -74,15 +74,25 @@
                 <ul class="list-group" th:each="dataset : ${cart}">
                     <li class="list-group-item cart-items">
                         <div class="row cart-row">
-                            <div class="col-8">
+                            <div class="col-6">
                                 <h6 class="my-0" th:text="${dataset.name}"></h6>
                                 <small class="text-muted" th:text="${dataset.description}"></small>
                             </div>
                             <div class="col-1 pt-2">
                                 <span class="text-muted" th:text="${dataset.price}"></span>
                             </div>
+                            <div class="col-1 pt-1">
+                                <form th:action="@{/subnumber/} + ${dataset.datasetid}">
+                                    <button class="btn btn-sm" type="submit">-</button>
+                                </form>
+                            </div>
                             <div class="col-1 pt-2">
                                 <span class="text-muted" th:text="${dataset.number}"></span>
+                            </div>
+                            <div class="col-1 pt-1">
+                                <form th:action="@{/addnumber/} + ${dataset.datasetid}">
+                                    <button class="btn btn-sm" type="submit">+</button>
+                                </form>
                             </div>
                             <div class="col-1 pt-1">
                                 <form th:action="@{/removecart/} + ${dataset.datasetid}">
