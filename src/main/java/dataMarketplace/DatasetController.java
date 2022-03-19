@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.sql.*;
+//import java.util.ArrayList;
 import java.util.HashMap;
 
 @Controller
@@ -211,5 +211,38 @@ public class DatasetController extends HttpServlet {
         model.addAttribute("orderId",orderId);
         model.addAttribute("description",description);
         return "checkout.html";
+    }
+
+    @GetMapping("/c_order_history")
+    public String Customer_Order_History(Model model) throws ClassNotFoundException, SQLException {
+        SQLInformationMapper mapper = new SQLInformationMapper();
+        Class.forName(mapper.getDriver());
+        Connection conn = DriverManager.getConnection(mapper.getUrl(), mapper.getUsername(), mapper.getPass());
+        Statement stmt = conn.createStatement();
+        PreparedStatement ps = conn.prepareStatement("select orderid,description from orders where customerid=?");
+        ps.setInt(1, Singleton.customer_login_id);
+        conn.close();
+        return "customer_order_history.html";
+    }
+
+    @GetMapping("/o_order_control")
+    public String Owner_Order_Control(Model model) throws ClassNotFoundException, SQLException {
+        SQLInformationMapper mapper = new SQLInformationMapper();
+        Class.forName(mapper.getDriver());
+        Connection conn = DriverManager.getConnection(mapper.getUrl(), mapper.getUsername(), mapper.getPass());
+        PreparedStatement ps = conn.prepareStatement("select * from orders");
+        conn.close();
+        return "owner_order_control.html";
+    }
+
+    @GetMapping("/o_change_status")
+    public String Owner_Change_Order_Status(){
+        //MySQL code typo:
+        //UPDATE employees
+        //SET
+        //    email = 'mary.patterson@classicmodelcars.com'
+        //WHERE
+        //    employeeNumber = 1056;
+        return "changestatus.html";
     }
 }
