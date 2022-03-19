@@ -121,6 +121,7 @@ public class DatasetController extends HttpServlet {
 
 
     HashMap<Dataset, Integer> shoppingCart = new HashMap<>();
+    int orderId = 10000 + (int) (Math.random() * 10000);
     @GetMapping("/addcart/{id}")
     public String addcart(@PathVariable int id, Model model, HttpServletResponse response) {
    //     System.out.println("Hello");
@@ -163,7 +164,7 @@ public class DatasetController extends HttpServlet {
     }
     // TODO
     @GetMapping("/payment")
-    public String browseCart(Model model){
+    public String browseCart(Model model) throws SQLException, ClassNotFoundException {
         //setDatasets(shoppingCart);
         HashMap<Integer, Item> cart = new HashMap<>();
         int i = 0;
@@ -180,7 +181,9 @@ public class DatasetController extends HttpServlet {
             totalmoney = totalmoney + cart.get(i).getPrice() * num;
             i++;
         }
-
+        while(Validate.checkOrderID(orderId)){
+            orderId = 10000 + (int) (Math.random() * 10000);
+        }
      //   System.out.println("size:"+cart.size());
         //model.addAttribute("datasets", shoppingCart.values());
         model.addAttribute("cart", cart.values());
@@ -189,17 +192,14 @@ public class DatasetController extends HttpServlet {
     }
 
     @GetMapping("/checkout")
-    public String checkout(Model model) throws SQLException, ClassNotFoundException {
+    public String checkout(Model model){
         StringBuilder description = new StringBuilder();
         for (Dataset d: shoppingCart.keySet()){
             description.append(shoppingCart.get(d)).append("*").append(d.getName()).append(" ").append(d.getPrice()*shoppingCart.get(d)).append("euro,");
         }
         description.deleteCharAt(description.length()-1);
         Order o = new Order();
-        int orderId = 10000 + (int) (Math.random() * 10000);
-        while(Validate.checkOrderID(orderId)){
-            orderId = 10000 + (int) (Math.random() * 10000);
-        }
+
         o.setOrderID(orderId);
 
         o.setCustomerID(Singleton.customer_login_id);

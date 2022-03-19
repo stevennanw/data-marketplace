@@ -22,9 +22,9 @@ public class DataMarketplaceApplication{
 
 	public static void main(String[] args) throws SQLException, ClassNotFoundException{
 		SpringApplication.run(DataMarketplaceApplication.class, args);
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/tempdb?serverTimezone=UTC";
-		Connection conn = DriverManager.getConnection(url, "root", "pass");
+		SQLInformationMapper mapper = new SQLInformationMapper();
+		Class.forName(mapper.getDriver());
+		Connection conn = DriverManager.getConnection(mapper.getUrl(), mapper.getUsername(), mapper.getPass());
 		Statement stmt = conn.createStatement();
 		if(!tableExists("customers", conn)){
 			stmt.executeUpdate("CREATE TABLE customer;");
