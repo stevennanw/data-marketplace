@@ -132,7 +132,7 @@ public class DatasetController extends HttpServlet {
         {
             shoppingCart.put(dataset,1);
         }else{
-            shoppingCart.put(dataset,shoppingCart.get(dataset)+1);
+            shoppingCart.put(dataset,(int)shoppingCart.get(dataset)+1);
         }
     //    System.out.println("jo");
     //    System.out.println(shoppingCart.size());
@@ -203,7 +203,6 @@ public class DatasetController extends HttpServlet {
         Order o = new Order();
 
         o.setOrderID(orderId);
-
         o.setCustomerID(Singleton.customer_login_id);
        // System.out.println(Singleton.getInstance());
         o.setDescription(description.toString());
@@ -212,6 +211,7 @@ public class DatasetController extends HttpServlet {
             orderRepository.save(o);
         model.addAttribute("orderId",orderId);
         model.addAttribute("description",description);
+        shoppingCart.clear();
         return "checkout.html";
     }
 
