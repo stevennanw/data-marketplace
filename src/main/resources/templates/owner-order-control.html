@@ -9,8 +9,6 @@
     <script src="/js/darkmode.js" async></script>
     <link rel="stylesheet" href="/styles/darkmode.css">
 
-    <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
 </head>
 <body class="text-center">
 
@@ -27,7 +25,7 @@
             <th>order id</th>
             <th>customer id</th>
             <th>description</th>
-            <th>status</th>
+            <th>dispatched</th>
             <th>change status</th>
         </tr>
         <tr th:each="orders : ${data}">
