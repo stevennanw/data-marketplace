@@ -26,16 +26,16 @@ public class DatasetController extends HttpServlet {
     int datasetID=0;
     public void setDatasets(HashMap<Integer, Dataset> datasets) {
         this.datasets = datasets;
-        datasets.put(0,new Dataset(0,"name0",0,"description0",0));
-        datasets.put(1,new Dataset(1,"name1",1,"description1",0));
-        datasets.put(2,new Dataset(2,"name2",2,"description2",0));
-        datasets.put(3,new Dataset(3,"name3",3,"description3",0));
-        datasets.put(4,new Dataset(4,"name4",4,"description4",0));
-        datasets.put(5,new Dataset(5,"name5",0,"description5",0));
-        datasets.put(6,new Dataset(6,"name6",1,"description6",0));
-        datasets.put(7,new Dataset(7,"name7",2,"description7",0));
-        datasets.put(8,new Dataset(8,"name8",3,"description8",0));
-        datasets.put(9,new Dataset(9,"name9",4,"description9",0));
+        datasets.put(0,new Dataset(0,"Dataset for beginner1",50,"Wanna to learn data analysis? Here is perfect start point",0));
+        datasets.put(1,new Dataset(1,"Dataset for beginner2",50,"Here you can get more dataset for you practice",0));
+        datasets.put(2,new Dataset(2,"Economic",150,"Global, national and local economic activity data",0));
+        datasets.put(3,new Dataset(3,"Earth Sciences",150,"Climatology, earth science, geology datasets",0));
+        datasets.put(4,new Dataset(4,"Education",200,"Educational business related data",0));
+        datasets.put(5,new Dataset(5,"Heath & Medicine",200,"All data related to medicine & healthcare",0));
+        datasets.put(6,new Dataset(6,"Machine Learning",200,"Datasets you can jumpstart your next project",0));
+        datasets.put(7,new Dataset(7,"Politics",200,"Campaign, contribution, lobbying and other elections data",0));
+        datasets.put(8,new Dataset(8,"Real Estate",200,"Data of properties for sales",0));
+        datasets.put(9,new Dataset(9,"Sports",150,"Performance data for professional and academic sports",0));
         initialize = 1;
     }
 
