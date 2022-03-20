@@ -12,6 +12,16 @@ public class Order implements Serializable{
     private int customerID;
     @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
+    private boolean state;
+
+    public Order(){}
+    public Order(int orderID,int customerID, String description, boolean state){
+        this.orderID = orderID;
+        this.customerID = customerID;
+        this.description = description;
+        this.state = state;
+    }
 
     public int getOrderID() {
         return orderID;
@@ -44,8 +54,4 @@ public class Order implements Serializable{
     public void setState(boolean state) {
         this.state = state;
     }
-
-    @Column(nullable = false)
-    private boolean state;
-
 }

@@ -235,11 +235,17 @@ public class DatasetController extends HttpServlet {
 
     @GetMapping("/o_order_control")
     public String Owner_Order_Control(Model model) throws ClassNotFoundException, SQLException {
+        List<Order> orderHistory = new ArrayList<>();
         SQLInformationMapper mapper = new SQLInformationMapper();
         Class.forName(mapper.getDriver());
         Connection conn = DriverManager.getConnection(mapper.getUrl(), mapper.getUsername(), mapper.getPass());
         PreparedStatement ps = conn.prepareStatement("select * from orders");
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            orderHistory.add(new Order(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getBoolean(4)));
+        }
         conn.close();
+        model.addAttribute("data",orderHistory);
         return "owner_order_control.html";
     }
 
