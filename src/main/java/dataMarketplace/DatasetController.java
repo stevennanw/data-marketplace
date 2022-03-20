@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 //import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class DatasetController extends HttpServlet {
@@ -215,13 +217,19 @@ public class DatasetController extends HttpServlet {
 
     @GetMapping("/c_order_history")
     public String Customer_Order_History(Model model) throws ClassNotFoundException, SQLException {
+        List<OrderHistory> orderHistory = new ArrayList<>();
         SQLInformationMapper mapper = new SQLInformationMapper();
         Class.forName(mapper.getDriver());
         Connection conn = DriverManager.getConnection(mapper.getUrl(), mapper.getUsername(), mapper.getPass());
         Statement stmt = conn.createStatement();
         PreparedStatement ps = conn.prepareStatement("select orderid,description from orders where customerid=?");
         ps.setInt(1, Singleton.customer_login_id);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            orderHistory.add(new OrderHistory(rs.getString(1),rs.getString(2)));
+        }
         conn.close();
+        model.addAttribute("data",orderHistory);
         return "customer_order_history.html";
     }
 
