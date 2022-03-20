@@ -215,7 +215,7 @@ public class DatasetController extends HttpServlet {
         return "checkout.html";
     }
 
-    @GetMapping("/c_order_history")
+    @GetMapping("/customer-order-history")
     public String Customer_Order_History(Model model) throws ClassNotFoundException, SQLException {
         List<OrderHistory> orderHistory = new ArrayList<>();
         SQLInformationMapper mapper = new SQLInformationMapper();
@@ -230,10 +230,10 @@ public class DatasetController extends HttpServlet {
         }
         conn.close();
         model.addAttribute("data",orderHistory);
-        return "customer_order_history.html";
+        return "customer-order-history.html";
     }
 
-    @GetMapping("/o_order_control")
+    @GetMapping("/owner-order-control")
     public String Owner_Order_Control(Model model) throws ClassNotFoundException, SQLException {
         List<Order> orderHistory = new ArrayList<>();
         SQLInformationMapper mapper = new SQLInformationMapper();
@@ -246,7 +246,7 @@ public class DatasetController extends HttpServlet {
         }
         conn.close();
         model.addAttribute("data",orderHistory);
-        return "owner_order_control.html";
+        return "owner-order-control.html";
     }
 
     @GetMapping("/o_change_status/{id}")
