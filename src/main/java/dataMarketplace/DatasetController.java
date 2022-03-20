@@ -249,12 +249,21 @@ public class DatasetController extends HttpServlet {
         return "owner_order_control.html";
     }
 
-    @GetMapping("/o_change_status")
-    public String Owner_Change_Order_Status(){
+    @GetMapping("/o_change_status/{id}")
+    public String Owner_Change_Order_Status(@PathVariable int id) throws ClassNotFoundException, SQLException {
+        SQLInformationMapper mapper = new SQLInformationMapper();
+        Class.forName(mapper.getDriver());
+        Connection conn = DriverManager.getConnection(mapper.getUrl(), mapper.getUsername(), mapper.getPass());
+        //Statement ps = conn.prepareStatement("UPDATE orders SET `state` = NOT status WHERE orderid=?");
+        //ps.setInt(1, id);
+        //ps.executeQuery();
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate("UPDATE orders SET `state` = NOT state WHERE orderid="+id);
+        conn.close();
         //MySQL code typo:
         //UPDATE employees
         //SET
-        //    email = 'mary.patterson@classicmodelcars.com'
+        //    `my_bool` = NOT my_bool
         //WHERE
         //    employeeNumber = 1056;
         return "changestatus.html";

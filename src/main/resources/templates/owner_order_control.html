@@ -28,12 +28,14 @@
             <th>customer id</th>
             <th>description</th>
             <th>status</th>
+            <th>change status</th>
         </tr>
         <tr th:each="orders : ${data}">
             <td th:text="${orders.getOrderID()}"></td>
             <td th:text="${orders.getCustomerID()}"></td>
             <td th:text="${orders.getDescription()}"></td>
             <td th:text="${orders.isState()}"></td>
+            <form method="GET" th:action="@{/o_change_status/} + ${orders.getOrderID()}"><td><button>change</button><td></form>
         </tr>
     </table>
     <a href="/owner-index" class="h3 mb-3 fw-normal">back</a>
